@@ -1,0 +1,6 @@
+streamlit
+pandas
+openai
+ipython
+matplotlib
+psycopg2-binary
