@@ -1,4 +1,6 @@
 import uuid
+from pathlib import Path
+
 import streamlit as st
 import pandas as pd
 from projects.sheet_scout.app import SheetChatbotApplication
@@ -8,6 +10,12 @@ from projects.sheet_scout.llm_interface import LLMInterface
 st.set_page_config(page_title='Sheet Scout', page_icon='📈')
 # st.session_state.ss = st.session_state
 
+style_file = ".streamlit/style.css"
+if Path(style_file):
+    with open(style_file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+# Page
 if not (st.session_state.get('ss_agreed_to_disclaimer') and st.session_state.get('ss_api_key_verified') and st.session_state.get('ss_app_initialized')):
     st.title("Sheet Scout 📈")
     st.markdown(
@@ -150,7 +158,6 @@ if st.session_state['ss_app_initialized']:
 
     # Chat Message Input
     user_query = st.chat_input(placeholder="What is your query?", key="chat_input")
-
 
     # - Process Query
     def _process_query(query):

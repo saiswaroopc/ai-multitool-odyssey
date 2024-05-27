@@ -1,0 +1,7 @@
+/* Hide header and footer */
+header {
+    visibility: hidden;
+}
+footer {
+    visibility: hidden;
+}

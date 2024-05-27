@@ -1,10 +1,19 @@
 import streamlit as st
+from pathlib import Path
 
+# Set page config
 st.set_page_config(
     page_title="AI Multitool Odyssey",
     page_icon="🔮"
 )
 
+style_file = ".streamlit/style.css"
+if Path(style_file):
+    with open(style_file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
+# Page
 st.title("AI Multitool Odyssey 🔮")
 st.markdown("""
 Welcome to AI MultiTool Odyssey, your premier destination for exploring a suite of powerful, AI-driven tools designed to enhance your data and language processing capabilities. This central hub connects you seamlessly to a range of applications, each specialized to handle different aspects of data analysis, document handling, and language translation. Whether you're diving deep into datasets, searching through documents, or crossing language barriers, AI MultiTool Odyssey equips you with the right tools to perform efficiently and effectively.

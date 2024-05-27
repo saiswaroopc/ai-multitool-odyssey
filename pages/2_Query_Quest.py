@@ -1,4 +1,5 @@
 import uuid
+from pathlib import Path
 
 import streamlit as st
 from projects.query_quest.database_manager import DatabaseManager
@@ -9,6 +10,13 @@ from projects.query_quest.app import DBChatbotApplication
 st.set_page_config(page_title='Query Quest', page_icon='💰')
 # st.session_state.qq = st.session_state
 
+style_file = ".streamlit/style.css"
+if Path(style_file):
+    with open(style_file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
+# Page
 if not (st.session_state.get('qq_agreed_to_disclaimer') and st.session_state.get('qq_connection_verified') and st.session_state.get('qq_api_key_verified') and st.session_state.get('qq_app_initialized')):
     st.title("Query Quest 💰")
     st.markdown(
@@ -186,7 +194,6 @@ if st.session_state['qq_app_initialized']:
 
     # Chat Message Input
     user_query = st.chat_input(placeholder="What is your query?", key="chat_input")
-
 
     # - Process Query
     def _process_query(query):
